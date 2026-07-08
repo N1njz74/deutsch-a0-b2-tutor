@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "check": "python3 - <<'PY'\nfrom pathlib import Path\nassert Path('index.html').exists()\nprint('index.html ok')\nPY"
+  },
+  "private": true
+}

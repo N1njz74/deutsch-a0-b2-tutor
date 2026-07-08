@@ -1,0 +1,89 @@
+{
+  "checks": [
+    {
+      "screenshot": "01_desktop_start.png",
+      "route": "#home"
+    },
+    {
+      "home_quick_entries": true
+    },
+    {
+      "screenshot": "02_desktop_b2_short.png",
+      "route": "#b2"
+    },
+    {
+      "b2_visible": true
+    },
+    {
+      "screenshot": "03_desktop_vocab.png",
+      "route": "#vocab"
+    },
+    {
+      "screenshot": "04_desktop_vocab_medical_search.png",
+      "route": "#vocab"
+    },
+    {
+      "b2_vocab_search": true
+    },
+    {
+      "screenshot": "05_desktop_path_a0_before_done.png",
+      "route": "#path/A0"
+    },
+    {
+      "screenshot": "06_desktop_done_after_click.png",
+      "route": "#path/A0"
+    },
+    {
+      "done_click_css_checked": true,
+      "first_done_id": "a0-01-ss",
+      "localStorage_runtime_check": "skipped: set_content opaque origin denies localStorage; saveState uses try/catch"
+    },
+    {
+      "screenshot": "07_desktop_hide_learned.png",
+      "route": "#path/A0"
+    },
+    {
+      "hide_learned_visible_control": true
+    },
+    {
+      "screenshot": "08_desktop_diagnostic.png",
+      "route": "#diagnostic"
+    },
+    {
+      "screenshot": "09_desktop_diagnostic_result.png",
+      "route": "#diagnostic"
+    },
+    {
+      "diagnostic_result": true
+    },
+    {
+      "screenshot": "10_desktop_progress.png",
+      "route": "#progress"
+    },
+    {
+      "screenshot": "11_mobile_start.png",
+      "route": "#home"
+    },
+    {
+      "screenshot": "12_mobile_drawer.png",
+      "route": "#home"
+    },
+    {
+      "screenshot": "13_mobile_b2.png",
+      "route": "#b2"
+    },
+    {
+      "screenshot": "14_mobile_vocab.png",
+      "route": "#vocab"
+    }
+  ],
+  "console_errors": [],
+  "notes": [
+    "Visual check used Playwright page.set_content because file:// and localhost navigation were blocked by environment policy."
+  ],
+  "version": "v14.1",
+  "lesson_count": 78,
+  "vocab_count": 464,
+  "diagnostic_count": 31,
+  "exam_prompt_count": 7
+}
