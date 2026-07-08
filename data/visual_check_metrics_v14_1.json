@@ -85,5 +85,25 @@
   "lesson_count": 78,
   "vocab_count": 464,
   "diagnostic_count": 31,
-  "exam_prompt_count": 7
+  "exam_prompt_count": 7,
+  "v14_2": {
+    "lessons": 101,
+    "vocab": 685,
+    "diagnostic": 55,
+    "examPrompts": 17,
+    "audio": "auto/device/online/offline",
+    "select_hotfix": "change handlers",
+    "screenshots_added": [
+      "15_desktop_v142_start.png",
+      "16_desktop_v142_audio_settings.png",
+      "17_desktop_v142_path_status_filter.png",
+      "18_desktop_v142_vocab_specialized.png",
+      "19_mobile_v142_audio_settings.png"
+    ],
+    "console_errors": [],
+    "visual_check_method": "Playwright set_content fallback; file:// and localhost are blocked in this environment",
+    "offline_mp3_files": 353,
+    "offline_mp3_note": "generated with local espeak de voice; fallback remains online/device",
+    "auto_audio_order": "mobile: offline → online → device; desktop: device → offline → online"
+  }
 }
