@@ -321,3 +321,10 @@
 - Fixed right-side clipping on narrow mobile screens in `Подробно для русскоговорящего`, schemes, mini graphs and grammar tables.
 - Added responsive wrapping and `min-width: 0` safeguards for lesson cards, details, grids, schemes and toolbar elements.
 - Verified key hash routes at a real 360px viewport and desktop width; no non-table horizontal overflow remained.
+
+## v15.8 personal learning hub
+
+- Added profile-first learning hub for different learners using the same static app.
+- Added beginner, diagnostic and B2-focus scenarios.
+- Added per-profile focus level, learning mode, last lesson and last activity fields in local state.
+- Added one-click level skip/review actions and JSON import for progress portability under GitHub Pages constraints.

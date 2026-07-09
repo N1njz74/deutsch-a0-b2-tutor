@@ -203,3 +203,10 @@ Lesson render repair:
 - Fixed mobile clipping in lesson theory, Russian-speaker blocks, visual schemes, mini graphs and grammar tables.
 - Added responsive min-width and text wrapping rules so narrow screens do not cut content on the right.
 - Kept grammar tables horizontally scrollable inside their own container instead of stretching the whole lesson card.
+
+## v15.8 personal learning hub
+
+- Added a learner hub with active profile, focus level, learning mode, resume lesson and quick scenarios.
+- Added B2 focus mode: a learner can mark A0-B1 as known, hide learned material and continue with B2.
+- Opening a lesson now saves it as the last in-progress place for that profile.
+- Added level skip/review actions and JSON import for moving local progress between devices without a backend.
