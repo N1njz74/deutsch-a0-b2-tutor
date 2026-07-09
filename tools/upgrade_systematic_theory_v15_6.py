@@ -638,6 +638,107 @@ CSS = r'''
 '''
 
 
+RESPONSIVE_CSS = r'''
+/* v157-responsive-layout-fix-css */
+.hero-card,.panel,.card,.lesson-card,details,summary,
+.grid>*,.grid.two>*,.grid.four>*,.quick-grid>*,
+.section-title>*,.toolbar,.level-tabs,.pill,
+.deep-theory,.deep-theory>details,.theory-grid,.theory-box,
+.contrast-grid,.contrast-card,.level-guide,.guide-columns,
+.guide-flow,.guide-step,.scheme-panel,.scheme-flow,.scheme-step,
+.guide-bars,.scheme-bars,.bar-line,.bar-track,
+.grammar-table-wrap,.table-wrap,.example,.diagnostic-q,.option {
+  min-width: 0;
+  max-width: 100%;
+}
+.panel,.card,.lesson-card,details,.theory-box,.contrast-card,
+.scheme-panel,.level-guide,.guide-step,.scheme-step,.example,
+.option,.pill,.badge,.quick,.stat {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+.lesson-page h2,.card h3,.lesson-card h3,.lead,.muted,.de,.ru,
+.formula-line,.contrast-card p,.scheme-step p,.guide-step p,
+.theory-box p,.answer-note,.diagnostic-q label {
+  overflow-wrap: anywhere;
+}
+.formula-line,.de b,.right b {
+  word-break: break-word;
+}
+.deep-theory>details,.lesson-card>details {
+  width: 100%;
+}
+.theory-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+}
+.contrast-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+}
+.guide-flow,.scheme-flow {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+}
+.grammar-table-wrap,.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.grammar-table {
+  min-width: 620px;
+}
+@media (max-width: 620px) {
+  body { overflow-x: hidden; }
+  main, footer { width: min(100% - 14px, var(--max)); }
+  .panel,.card,.lesson-card { padding: 12px; }
+  details,.deep-theory details { padding: 10px; }
+  .topbar { gap: 8px; }
+  .top-controls select { max-width: 104px; }
+  .brand strong { font-size: .94rem; }
+  .brand span { font-size: .72rem; }
+  .theory-grid,.contrast-grid,.guide-flow,.scheme-flow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .bar-line {
+    grid-template-columns: minmax(0, 1fr) 42px;
+    gap: 6px;
+  }
+  .bar-line>span:first-child {
+    grid-column: 1 / -1;
+    color: var(--text-soft);
+    font-size: .9rem;
+  }
+  .bar-line>span:last-child {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .scheme-panel { padding: 10px; }
+  .speak {
+    margin-left: 4px;
+    margin-top: 4px;
+    vertical-align: middle;
+  }
+  table { min-width: 620px; }
+  .grammar-table {
+    min-width: 540px;
+    font-size: .86rem;
+  }
+  .lesson-nav-row .btn,.section-title .toolbar .btn {
+    width: 100%;
+  }
+}
+@media (max-width: 380px) {
+  main, footer { width: calc(100% - 10px); }
+  .panel,.card,.lesson-card { padding: 10px; }
+  .topbar { padding: 8px; }
+  .hamburger { padding: 7px 9px; }
+  .top-controls select {
+    max-width: 88px;
+    padding-inline: 6px;
+  }
+  .brand span { display: none; }
+  .hero h1 { font-size: 2rem; }
+}
+'''
+
+
 HELPERS = r'''
     // v156-systematic-theory-render
     function renderBarsV156(bars){
@@ -707,6 +808,8 @@ def patch_rendering(index):
     text = index.read_text(encoding="utf-8")
     if "v156-systematic-theory-css" not in text:
         text = text.replace("</style>", CSS + "\n</style>", 1)
+    if "v157-responsive-layout-fix-css" not in text:
+        text = text.replace("</style>", RESPONSIVE_CSS + "\n</style>", 1)
     if "v156-systematic-theory-render" not in text:
         marker = "    function renderGrammarTableV153(t){"
         pos = text.find(marker)

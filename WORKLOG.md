@@ -315,3 +315,9 @@
 - Added visual theory schemes and quality graphs to lessons.
 - Expanded B2 quality with five new lessons and focused B2 style vocabulary.
 - Added reports for the systematic quality pass.
+
+## v15.7 responsive layout fix
+
+- Fixed right-side clipping on narrow mobile screens in `Подробно для русскоговорящего`, schemes, mini graphs and grammar tables.
+- Added responsive wrapping and `min-width: 0` safeguards for lesson cards, details, grids, schemes and toolbar elements.
+- Verified key hash routes at a real 360px viewport and desktop width; no non-table horizontal overflow remained.

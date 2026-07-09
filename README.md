@@ -197,3 +197,9 @@ Lesson render repair:
 - Expanded B2 with dedicated quality lessons: argumentation, Satzbau, Nominalstil/Passiv/zu-Infinitiv, register and error diagnosis.
 - Added B2 vocabulary topic `B2 Qualität und Stil` and generated MP3 for new German material.
 - Added diagnostic report: `data/systematic_quality_v15_6.json` and `docs/diagnostics/systematic_quality_v15_6.md`.
+
+## v15.7 responsive layout fix
+
+- Fixed mobile clipping in lesson theory, Russian-speaker blocks, visual schemes, mini graphs and grammar tables.
+- Added responsive min-width and text wrapping rules so narrow screens do not cut content on the right.
+- Kept grammar tables horizontally scrollable inside their own container instead of stretching the whole lesson card.
