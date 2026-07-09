@@ -210,3 +210,12 @@ Lesson render repair:
 - Added B2 focus mode: a learner can mark A0-B1 as known, hide learned material and continue with B2.
 - Opening a lesson now saves it as the last in-progress place for that profile.
 - Added level skip/review actions and JSON import for moving local progress between devices without a backend.
+
+
+## v15.9 beginner content expansion
+
+- Added practical A0 vocabulary for objects, family, food, city directions, body, common verbs, adjectives and survival phrases.
+- Added new A0/A1 lessons with examples, Russian-speaker traps, mini tables, visual schemes and drills.
+- Added more A0/A1 diagnostic checks and review material.
+- Generated neural MP3 coverage for new German words and phrases.
+- Added diagnostic report: `data/beginner_content_v15_9.json` and `docs/diagnostics/beginner_content_v15_9.md`.

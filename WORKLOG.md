@@ -328,3 +328,11 @@
 - Added beginner, diagnostic and B2-focus scenarios.
 - Added per-profile focus level, learning mode, last lesson and last activity fields in local state.
 - Added one-click level skip/review actions and JSON import for progress portability under GitHub Pages constraints.
+
+
+## v15.9 beginner content expansion
+
+- Expanded beginner material for a learner starting from zero.
+- Added common A0/A1 words, phrases, practical lessons, repetitions and diagnostic checks.
+- Kept the content Russian-speaker oriented: articles, V2, fixed phrases and common transfer traps.
+- Rebuilt full neural audio manifest after MP3 generation.

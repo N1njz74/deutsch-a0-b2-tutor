@@ -1,0 +1,131 @@
+{
+  "version": "v15.9",
+  "updatedAt": "2026-07-09T09:34:59.508547+00:00",
+  "purpose": "Beginner content expansion: A0/A1 core vocabulary, practical lessons, review drills and diagnostic checks.",
+  "before": {
+    "lessons": 111,
+    "lessonsByLevel": {
+      "A0": 15,
+      "A1": 18,
+      "A2": 18,
+      "B1": 20,
+      "B2": 40
+    },
+    "vocab": 765,
+    "vocabByLevel": {
+      "A0": 80,
+      "B1": 119,
+      "B2": 410,
+      "A1": 71,
+      "A2": 85
+    },
+    "diagnostic": 55,
+    "drills": 366,
+    "examples": 374,
+    "a0VocabTopics": {
+      "Базовые слова A0-A1": 8,
+      "Приветствие": 5,
+      "Люди": 5,
+      "Время": 5,
+      "База": 5,
+      "Глаголы": 10,
+      "Числа": 6,
+      "Дни": 7,
+      "Вопросы": 6,
+      "Места": 3,
+      "Описание": 4,
+      "A0 выживание": 7,
+      "Русскоговорящий мост": 9
+    },
+    "a1VocabTopics": {
+      "Семья": 4,
+      "Еда": 4,
+      "Город": 5,
+      "Работа": 3,
+      "Здоровье": 8,
+      "Быт": 5,
+      "Одежда": 3,
+      "Покупки": 5,
+      "Дом": 4,
+      "Транспорт": 6,
+      "Время": 4,
+      "Глаголы": 5,
+      "Офис и документы": 5,
+      "Русскоговорящий мост": 10
+    }
+  },
+  "after": {
+    "lessons": 118,
+    "lessonsByLevel": {
+      "A0": 20,
+      "A1": 20,
+      "A2": 18,
+      "B1": 20,
+      "B2": 40
+    },
+    "vocab": 840,
+    "vocabByLevel": {
+      "A0": 138,
+      "B1": 119,
+      "B2": 410,
+      "A1": 88,
+      "A2": 85
+    },
+    "diagnostic": 61,
+    "drills": 408,
+    "examples": 416,
+    "a0VocabTopics": {
+      "Базовые слова A0-A1": 8,
+      "Приветствие": 5,
+      "Люди": 5,
+      "Время": 5,
+      "База": 5,
+      "Глаголы": 10,
+      "Числа": 6,
+      "Дни": 7,
+      "Вопросы": 6,
+      "Места": 3,
+      "Описание": 4,
+      "A0 выживание": 7,
+      "Русскоговорящий мост": 9,
+      "Дом и вещи": 13,
+      "Люди и семья": 8,
+      "Еда и напитки": 12,
+      "Город и дорога": 4,
+      "Тело и здоровье": 6,
+      "Частые глаголы": 1,
+      "Частые признаки": 6,
+      "A0 фразы выживания": 8
+    },
+    "a1VocabTopics": {
+      "Семья": 4,
+      "Еда": 4,
+      "Город": 5,
+      "Работа": 3,
+      "Здоровье": 8,
+      "Быт": 5,
+      "Одежда": 3,
+      "Покупки": 5,
+      "Дом": 4,
+      "Транспорт": 6,
+      "Время": 4,
+      "Глаголы": 5,
+      "Офис и документы": 5,
+      "Русскоговорящий мост": 10,
+      "Покупки и цены": 8,
+      "Повседневная рутина": 3,
+      "Связная речь": 6
+    }
+  },
+  "added": {
+    "lessons": 7,
+    "vocab": 75,
+    "diagnostic": 6
+  },
+  "qualityFocus": [
+    "A0 learner can start from zero with common objects, family, food, city directions and survival phrases.",
+    "A1 learner gets practical shopping and daily routine reinforcement.",
+    "Lessons include examples, drills, Russian-speaker traps, mini tables and visual schemes.",
+    "New German words and phrases are included in app-data so the neural MP3 generator can cover them."
+  ]
+}
