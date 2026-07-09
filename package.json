@@ -4,6 +4,6 @@
     "check": "python3 - <<'PY'\nfrom pathlib import Path\nassert Path('index.html').exists()\nprint('index.html ok')\nPY"
   },
   "private": true,
-  "version": "15.2.0",
+  "version": "15.3.0",
   "description": "Deutsch A0-B2 Tutor v14.2 with adaptive audio and expanded vocabulary"
 }
