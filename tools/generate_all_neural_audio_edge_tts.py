@@ -18,8 +18,9 @@ GERMAN_REPL = str.maketrans({
     "Ä": "ae", "Ö": "oe", "Ü": "ue",
 })
 CYR = re.compile(r"[А-Яа-яЁё]")
+LAT = re.compile(r"[A-Za-zÄÖÜäöüß]")
 
-def slugify(text: str) -> str:
+def slugify(text):
     text = html.unescape(str(text or ""))
     text = re.sub(r"\([^)]*\)", " ", text)
     text = text.translate(GERMAN_REPL).lower()
@@ -27,18 +28,18 @@ def slugify(text: str) -> str:
     text = re.sub(r"-+", "-", text).strip("-")
     return text[:160]
 
-def clean_candidate(x: str) -> str:
+def clean_candidate(x):
     x = html.unescape(str(x or "")).strip()
     if not x:
         return ""
     before = x.split("(")[0].strip()
-    if before and re.search(r"[A-Za-zÄÖÜäöüß]", before) and not CYR.search(before):
+    if before and LAT.search(before) and not CYR.search(before):
         return before
-    if re.search(r"[A-Za-zÄÖÜäöüß]", x) and not CYR.search(x):
+    if LAT.search(x) and not CYR.search(x):
         return x
     return ""
 
-def add_item(items: dict, text: str, source: str):
+def add_item(items, text, source):
     text = clean_candidate(text)
     if not text:
         return
@@ -47,43 +48,37 @@ def add_item(items: dict, text: str, source: str):
     slug = slugify(text)
     if not slug:
         return
-    if slug not in items:
-        items[slug] = {"text": text, "sources": []}
+    items.setdefault(slug, {"text": text, "sources": []})
     if source not in items[slug]["sources"]:
         items[slug]["sources"].append(source)
 
-def load_data(index_path: Path):
+def load_data(index_path):
     raw = index_path.read_text(encoding="utf-8")
     m = re.search(r'<script[^>]+id=["\']app-data["\'][^>]*>(.*?)</script>', raw, re.S)
     if not m:
         raise RuntimeError("app-data not found")
     return json.loads(html.unescape(m.group(1)))
 
-def collect_from_obj(obj, items, source_prefix):
+def collect(obj, items, source):
     if isinstance(obj, dict):
-        if "de" in obj:
-            add_item(items, obj.get("de"), source_prefix + ".de")
-        if "example" in obj:
-            add_item(items, obj.get("example"), source_prefix + ".example")
-        if "ru" in obj:
-            # нужно для старых v13-записей, где немецкая фраза лежит в ru/example
-            add_item(items, obj.get("ru"), source_prefix + ".ru")
+        for key in ["de", "example"]:
+            if key in obj:
+                add_item(items, obj.get(key), source + "." + key)
         if "options" in obj and isinstance(obj["options"], list):
             for i, opt in enumerate(obj["options"]):
-                add_item(items, opt, source_prefix + f".options[{i}]")
+                add_item(items, opt, source + f".options[{i}]")
         for k, v in obj.items():
-            collect_from_obj(v, items, source_prefix + "." + str(k))
+            collect(v, items, source + "." + str(k))
     elif isinstance(obj, list):
         for i, v in enumerate(obj):
-            collect_from_obj(v, items, source_prefix + f"[{i}]")
+            collect(v, items, source + f"[{i}]")
     elif isinstance(obj, str):
-        add_item(items, obj, source_prefix)
+        add_item(items, obj, source)
 
 async def synth_one(text, out_path, voice, rate, pitch, volume, retries=3):
     tmp = out_path.with_suffix(out_path.suffix + ".tmp")
     if tmp.exists():
         tmp.unlink()
-
     for attempt in range(1, retries + 1):
         try:
             communicate = edge_tts.Communicate(
@@ -117,21 +112,20 @@ async def main():
 
     root = Path(args.root)
     audio_dir = root / "audio"
+    data_dir = root / "data"
     audio_dir.mkdir(exist_ok=True)
+    data_dir.mkdir(exist_ok=True)
 
     data = load_data(root / "index.html")
     items = {}
 
-    collect_from_obj(data.get("lessons", []), items, "lessons")
-    collect_from_obj(data.get("vocab", []), items, "vocab")
-    collect_from_obj(data.get("diagnostic", []), items, "diagnostic")
-    collect_from_obj(data.get("examPrompts", []), items, "examPrompts")
-    collect_from_obj(data.get("b2Prompts", []), items, "b2Prompts")
+    for key in ["lessons", "vocab", "diagnostic", "examPrompts", "b2Prompts"]:
+        collect(data.get(key, []), items, key)
 
-    # системные тестовые фразы
     for t in [
         "Guten Tag. Ich lerne Deutsch.",
         "Ich lerne Deutsch.",
+        "Ich komme aus Russland.",
         "Können Sie das bitte wiederholen?",
         "Ich möchte einen Termin vereinbaren.",
         "Sehr geehrte Damen und Herren",
@@ -139,24 +133,14 @@ async def main():
     ]:
         add_item(items, t, "system")
 
+    obsolete_ukraine = audio_dir / "ich-komme-aus-der-ukraine.mp3"
+    if obsolete_ukraine.exists() and "ich-komme-aus-der-ukraine" not in items:
+        obsolete_ukraine.unlink()
+        print("Removed obsolete:", obsolete_ukraine.name)
+
     ordered = sorted(items.items(), key=lambda kv: kv[0])
     print("Total unique German audio items:", len(ordered))
     print("Voice:", args.voice)
-
-    source_map = {
-        "version": "v15.1",
-        "engine": "edge-tts",
-        "voice": args.voice,
-        "rate": args.rate,
-        "count": len(ordered),
-        "items": {slug: meta for slug, meta in ordered},
-        "updatedAt": datetime.now(timezone.utc).isoformat(),
-    }
-
-    (root / "data" / "audio_all_items_v15_1.json").write_text(
-        json.dumps(source_map, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8"
-    )
 
     failures = []
 
@@ -165,10 +149,11 @@ async def main():
         out = audio_dir / fn
 
         if out.exists() and out.stat().st_size > 1200 and not args.overwrite:
-            print(f"[{n}/{len(ordered)}] skip {fn}")
+            if n % 100 == 0:
+                print(f"[{n}/{len(ordered)}] skip existing...")
             continue
 
-        print(f"[{n}/{len(ordered)}] synth {fn} <- {meta['text'][:100]}")
+        print(f"[{n}/{len(ordered)}] synth {fn} <- {meta['text'][:90]}")
         try:
             await synth_one(meta["text"], out, args.voice, args.rate, args.pitch, args.volume)
         except Exception as e:
@@ -178,7 +163,7 @@ async def main():
         await asyncio.sleep(0.12)
 
     if failures:
-        (root / "data" / "audio_generation_failures_v15_1.json").write_text(
+        (data_dir / "audio_generation_failures_v15_2.json").write_text(
             json.dumps(failures, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8"
         )
@@ -186,7 +171,7 @@ async def main():
 
     files = sorted(p.name for p in audio_dir.glob("*.mp3"))
     manifest = {
-        "version": "v15.1",
+        "version": "v15.2",
         "engine": "edge-tts",
         "voice": args.voice,
         "rate": args.rate,
@@ -195,13 +180,29 @@ async def main():
         "updatedAt": datetime.now(timezone.utc).isoformat(),
     }
 
+    source_map = {
+        "version": "v15.2",
+        "engine": "edge-tts",
+        "voice": args.voice,
+        "rate": args.rate,
+        "itemCount": len(ordered),
+        "items": {slug: meta for slug, meta in ordered},
+        "updatedAt": datetime.now(timezone.utc).isoformat(),
+    }
+
     (audio_dir / "manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8"
     )
 
+    (data_dir / "audio_all_items_v15_2.json").write_text(
+        json.dumps(source_map, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8"
+    )
+
     print("Done.")
     print("MP3 files:", len(files))
+    print("Required audio items:", len(ordered))
 
 if __name__ == "__main__":
     asyncio.run(main())

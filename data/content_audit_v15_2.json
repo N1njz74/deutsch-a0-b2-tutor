@@ -1,0 +1,35 @@
+{
+  "version": "v15.2",
+  "updatedAt": "2026-07-09T04:52:55.137611+00:00",
+  "stats": {
+    "country_replacements": 2,
+    "swapped_v13_vocab_fields": 28,
+    "plural_example_fixes": 5,
+    "redemittel_example_fixes": 4,
+    "explanations_filled": 276
+  },
+  "counts": {
+    "lessons": 101,
+    "vocab": 685,
+    "diagnostic": 55,
+    "cyrillic_in_de_after_fix": 0,
+    "empty_explanations_after_fix": 0,
+    "ukraine_refs_after_fix": 0,
+    "cyrillic_de_samples": [],
+    "ukraine_samples": []
+  },
+  "weakSpotsDetected": [
+    "В старых v13-записях часть немецких фраз была в поле ru, а в поле de лежал русский ярлык.",
+    "В упражнениях и диагностике было много пустых explanation.",
+    "Были механические примеры вида 'X ist in diesem Kontext wichtig', иногда с ошибкой числа.",
+    "Была персональная фраза про Украину, заменена на Россию.",
+    "Аудио-пакет должен строиться из app-data, а не только из старого audio/manifest.json."
+  ],
+  "actionsApplied": [
+    "Ukraine/Russian country text replacement",
+    "v13 bilingual field repair",
+    "missing explanation generation",
+    "plural example agreement fixes",
+    "audit report generation"
+  ]
+}
