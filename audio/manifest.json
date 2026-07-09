@@ -1,5 +1,5 @@
 {
-  "version": "v14.2",
+  "version": "v15.0",
   "count": 353,
   "files": [
     "abschliessend-laesst-sich-sagen-dass.mp3",
@@ -356,5 +356,9 @@
     "zusammenfassend-kann-man-sagen-dass.mp3",
     "zwar-ist-die-loesung-teuer-aber-sie-ist-nachhaltig.mp3"
   ],
-  "note": "generated with local espeak German voice; auto fallback uses online/device if file is missing"
+  "note": "generated with local espeak German voice; auto fallback uses online/device if file is missing",
+  "engine": "edge-tts",
+  "voice": "de-DE-KatjaNeural",
+  "rate": "-5%",
+  "updatedAt": "2026-07-09T03:40:43.847420+00:00"
 }
