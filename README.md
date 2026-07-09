@@ -31,7 +31,7 @@ https://n1njz74.github.io/deutsch-a0-b2-tutor/
 
 ## Версия
 
-Текущая версия: **v14.8**.
+Текущая версия: **v14.9**.
 
 V14.1 расширяет GitHub-версию до полного продукта по плану: больше уроков, больше словаря, больше диагностических вопросов, профильная лексика и отдельный журнал проверки.
 
@@ -117,3 +117,14 @@ Fix release:
 - Online MP3 оставлен строгим режимом: без скрытой подмены голосом устройства;
 - Auto остаётся fallback-режимом: online → device → offline;
 - профильные словари medicine/swiss/surgery включены по умолчанию.
+## v14.9
+
+Fix release:
+
+- Online MP3 теперь пробует несколько online-TTS источников:
+  - translate.googleapis.com client=gtx;
+  - translate.google.com client=tw-ob;
+  - translate.google.com client=gtx;
+- режим Online MP3 остаётся строгим и не подменяется голосом устройства;
+- Auto остаётся fallback-режимом: online → device → offline;
+- сообщение `media 4` теперь показывает, какой online-источник упал.
