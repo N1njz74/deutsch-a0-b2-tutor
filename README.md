@@ -176,4 +176,24 @@ Lesson render repair:
 - восстановлен отсутствующий `renderDrill()`;
 - исправлено открытие уроков из `#path/A0` и прямого маршрута `#lesson/a0-01-ss`;
 - упражнения снова привязаны к штатному обработчику `answer-drill`;
-- добавлен отчёт `data/visual_diagnostic_report.json`.
+- добавлен отчёт `data/visual_diagnostic_report.json`;
+- скриншоты визуальной диагностики сохранены в `docs/screenshots/visual_diagnostic/`;
+- контрольные суммы пересобраны без самоссылки на `CHECKSUMS.sha256`.
+
+
+## v15.5 Russian-speaker bridge
+
+- Added dedicated A0-B2 bridge lessons for Russian-speaking learners.
+- Expanded contrast examples: Russian transfer mistake -> correct German form.
+- Rebuilt drill explanations so answers explain the actual grammar point.
+- Added focused vocabulary topic `Русскоговорящий мост` and generated MP3 for new German items.
+- Added diagnostic report: `data/tutor_diagnostic_v15_5.json` and `docs/diagnostics/tutor_diagnostic_v15_5.md`.
+
+
+## v15.6 systematic quality
+
+- Added level maps for A0, A1, A2, B1 and B2.
+- Added visual schemes and mini quality graphs inside lessons.
+- Expanded B2 with dedicated quality lessons: argumentation, Satzbau, Nominalstil/Passiv/zu-Infinitiv, register and error diagnosis.
+- Added B2 vocabulary topic `B2 Qualität und Stil` and generated MP3 for new German material.
+- Added diagnostic report: `data/systematic_quality_v15_6.json` and `docs/diagnostics/systematic_quality_v15_6.md`.

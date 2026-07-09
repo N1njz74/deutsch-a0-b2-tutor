@@ -1,0 +1,108 @@
+{
+  "version": "v15.5",
+  "updatedAt": "2026-07-09T07:56:19.906186+00:00",
+  "diagnosticScope": [
+    "content structure",
+    "lesson examples",
+    "Russian-speaker transfer support",
+    "drill and diagnostic explanations",
+    "vocabulary coverage",
+    "offline MP3 slug compatibility"
+  ],
+  "before": {
+    "lessons": 101,
+    "lessonsByLevel": {
+      "A0": 14,
+      "A1": 17,
+      "A2": 17,
+      "B1": 19,
+      "B2": 34
+    },
+    "vocab": 685,
+    "vocabByLevel": {
+      "A0": 71,
+      "B1": 111,
+      "B2": 367,
+      "A1": 61,
+      "A2": 75
+    },
+    "diagnosticQuestions": 55,
+    "lessonExamples": 314,
+    "contrastExamples": 0,
+    "drills": 326,
+    "genericExplanations": 78,
+    "mismatchMarkerExplanations": 92
+  },
+  "after": {
+    "lessons": 106,
+    "lessonsByLevel": {
+      "A0": 15,
+      "A1": 18,
+      "A2": 18,
+      "B1": 20,
+      "B2": 35
+    },
+    "vocab": 737,
+    "vocabByLevel": {
+      "A0": 80,
+      "B1": 119,
+      "B2": 382,
+      "A1": 71,
+      "A2": 85
+    },
+    "diagnosticQuestions": 55,
+    "lessonExamples": 348,
+    "contrastExamples": 25,
+    "drills": 346,
+    "genericExplanations": 0,
+    "mismatchMarkerExplanations": 2
+  },
+  "weakSpotsDetected": [
+    "Many explanations were generic or attached to the wrong concept, especially phonetics/passive explanations reused in unrelated drills.",
+    "The course had Russian-speaker notes, but no dedicated bridge lessons that start from Russian transfer mistakes.",
+    "The average lesson had about three examples; there were not enough contrastive examples for word order, articles, cases, clauses and formal writing.",
+    "The vocabulary lacked a single focused topic for Russian-speaker transfer formulas across A0-B2.",
+    "The full-audio generator used a 160-character slug while the app searches 80-character MP3 filenames."
+  ],
+  "actionsApplied": {
+    "explanations": {
+      "updated": 381,
+      "generic_before": 78,
+      "mismatch_markers_before": 170
+    },
+    "lessonsAdded": 5,
+    "existingLessonBridge": {
+      "contrast_examples_added": 15,
+      "lesson_examples_added": 9
+    },
+    "vocab": {
+      "added": 52,
+      "skipped_existing_de": 6
+    },
+    "audioItemsBefore": 1791,
+    "audioItemsAfter": 1925,
+    "audioItemsDelta": 134
+  },
+  "verification": {
+    "appAudioItemsChecked": 1925,
+    "missingMp3AfterGeneration": 0,
+    "browserRoutesChecked": [
+      "home",
+      "lesson/a0-15-russian-bridge",
+      "lesson/b2-35-russian-precision",
+      "vocab",
+      "diagnostic"
+    ],
+    "mobileRoutesChecked": [
+      "home",
+      "lesson/a0-15-russian-bridge",
+      "lesson/b2-35-russian-precision",
+      "vocab"
+    ],
+    "screenshots": [
+      "docs/screenshots/visual_diagnostic/06_v15_5_desktop_home.png",
+      "docs/screenshots/visual_diagnostic/07_v15_5_desktop_russian_bridge_a0.png",
+      "docs/screenshots/visual_diagnostic/08_v15_5_mobile_russian_bridge_b2.png"
+    ]
+  }
+}

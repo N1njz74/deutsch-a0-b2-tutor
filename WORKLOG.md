@@ -287,6 +287,8 @@
 
 ### Что проверено
 - Синтаксис встроенного JavaScript.
+- Скриншоты визуальной диагностики продублированы в требуемую папку `docs/screenshots/visual_diagnostic/`.
+- `CHECKSUMS.sha256` пересобран без самоссылки, чтобы проверка контрольных сумм была воспроизводимой.
 - Маршруты `#home`, `#path/A0`, `#lesson/a0-01-ss`, `#b2`, `#vocab`, `#diagnostic`, `#progress`, `#settings`.
 - Клик первого урока из `#path/A0`.
 - Ответ в упражнении урока.
@@ -296,3 +298,20 @@
 - Не вызывать renderer из `renderLesson()` или `renderTrainer()` без локальной проверки, что функция определена.
 - Не считать `node --check` достаточным для SPA: нужно открывать ключевые hash-маршруты.
 - Не переписывать весь `index.html` ради точечной runtime-ошибки.
+
+
+## v15.5 Russian-speaker bridge
+
+- Performed full tutor content diagnostics and saved reports in `data/` and `docs/diagnostics/`.
+- Added Russian-speaker bridge lessons for A0, A1, A2, B1 and B2.
+- Added contrastive examples for common Russian transfer mistakes in core lessons.
+- Added focused vocabulary for Russian-speaking learners and aligned MP3 generation with app slug rules.
+- Rewrote drill/diagnostic explanations to remove generic and mismatched explanations.
+
+
+## v15.6 systematic quality
+
+- Added systematic level maps for every level so no level lags behind structurally.
+- Added visual theory schemes and quality graphs to lessons.
+- Expanded B2 quality with five new lessons and focused B2 style vocabulary.
+- Added reports for the systematic quality pass.

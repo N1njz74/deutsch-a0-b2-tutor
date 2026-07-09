@@ -1,0 +1,72 @@
+{
+  "version": "v15.6",
+  "updatedAt": "2026-07-09T08:16:40.565863+00:00",
+  "purpose": "Systematic level quality pass: level maps, lesson schemes, B2 expansion and Russian-speaker theory.",
+  "before": {
+    "lessons": 106,
+    "byLevel": {
+      "A0": 15,
+      "A1": 18,
+      "A2": 18,
+      "B1": 20,
+      "B2": 35
+    },
+    "vocab": 737,
+    "visualSchemes": 0,
+    "b2Lessons": 35,
+    "b2Vocab": 382,
+    "levelGuides": 0
+  },
+  "after": {
+    "lessons": 111,
+    "byLevel": {
+      "A0": 15,
+      "A1": 18,
+      "A2": 18,
+      "B1": 20,
+      "B2": 40
+    },
+    "vocab": 765,
+    "visualSchemes": 111,
+    "b2Lessons": 40,
+    "b2Vocab": 410,
+    "levelGuides": 5
+  },
+  "actions": {
+    "levelGuides": 5,
+    "lessonVisualSchemes": {
+      "added": 106,
+      "byKind": {
+        "pronunciation": 5,
+        "default": 12,
+        "word_order": 8,
+        "questions": 11,
+        "articles": 9,
+        "modal": 6,
+        "separable": 5,
+        "speaking": 2,
+        "past": 4,
+        "cases": 10,
+        "clauses": 8,
+        "adjectives": 1,
+        "pronouns": 3,
+        "konjunktiv": 1,
+        "negation": 4,
+        "passive": 3,
+        "prepositions": 1,
+        "writing": 10,
+        "connectors": 2,
+        "medical": 1
+      }
+    },
+    "b2LessonsAdded": 5,
+    "b2VocabularyAdded": 28
+  },
+  "b2QualityFocus": [
+    "argumentation architecture",
+    "Vorfeld/Mittelfeld/Nachfeld and information structure",
+    "Nominalstil, Passiv and zu-Infinitiv as deliberate tools",
+    "register and redaction",
+    "Russian-speaker B2 error diagnosis: Verbposition, Valenz, Kasus, Artikel, Register"
+  ]
+}

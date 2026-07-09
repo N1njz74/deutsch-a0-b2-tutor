@@ -26,7 +26,9 @@ def slugify(text):
     text = text.translate(GERMAN_REPL).lower()
     text = re.sub(r"[^a-z0-9]+", "-", text)
     text = re.sub(r"-+", "-", text).strip("-")
-    return text[:160]
+    # Must match index.html audioFileName(); otherwise long phrases are
+    # generated but the app cannot find them in offline MP3 mode.
+    return text[:80]
 
 def clean_candidate(x):
     x = html.unescape(str(x or "")).strip()
@@ -75,7 +77,7 @@ def collect(obj, items, source):
     elif isinstance(obj, str):
         add_item(items, obj, source)
 
-async def synth_one(text, out_path, voice, rate, pitch, volume, retries=3):
+async def synth_one(text, out_path, voice, rate, pitch, volume, retries=3, timeout=45):
     tmp = out_path.with_suffix(out_path.suffix + ".tmp")
     if tmp.exists():
         tmp.unlink()
@@ -88,7 +90,7 @@ async def synth_one(text, out_path, voice, rate, pitch, volume, retries=3):
                 pitch=pitch,
                 volume=volume,
             )
-            await communicate.save(str(tmp))
+            await asyncio.wait_for(communicate.save(str(tmp)), timeout=timeout)
             if not tmp.exists() or tmp.stat().st_size < 1200:
                 raise RuntimeError("generated file is missing or too small")
             tmp.replace(out_path)
@@ -107,6 +109,7 @@ async def main():
     ap.add_argument("--rate", default="-5%")
     ap.add_argument("--pitch", default="+0Hz")
     ap.add_argument("--volume", default="+0%")
+    ap.add_argument("--item-timeout", type=int, default=45)
     ap.add_argument("--overwrite", action="store_true")
     args = ap.parse_args()
 
@@ -117,6 +120,7 @@ async def main():
     data_dir.mkdir(exist_ok=True)
 
     data = load_data(root / "index.html")
+    app_version = data.get("version") or "v15.2"
     items = {}
 
     for key in ["lessons", "vocab", "diagnostic", "examPrompts", "b2Prompts"]:
@@ -155,7 +159,7 @@ async def main():
 
         print(f"[{n}/{len(ordered)}] synth {fn} <- {meta['text'][:90]}")
         try:
-            await synth_one(meta["text"], out, args.voice, args.rate, args.pitch, args.volume)
+            await synth_one(meta["text"], out, args.voice, args.rate, args.pitch, args.volume, timeout=args.item_timeout)
         except Exception as e:
             failures.append({"file": fn, "text": meta["text"], "error": str(e)})
             print("  ERROR:", fn, e)
@@ -171,7 +175,7 @@ async def main():
 
     files = sorted(p.name for p in audio_dir.glob("*.mp3"))
     manifest = {
-        "version": "v15.2",
+        "version": app_version,
         "engine": "edge-tts",
         "voice": args.voice,
         "rate": args.rate,
@@ -181,7 +185,7 @@ async def main():
     }
 
     source_map = {
-        "version": "v15.2",
+        "version": app_version,
         "engine": "edge-tts",
         "voice": args.voice,
         "rate": args.rate,
@@ -195,7 +199,8 @@ async def main():
         encoding="utf-8"
     )
 
-    (data_dir / "audio_all_items_v15_2.json").write_text(
+    safe_version = str(app_version).replace(".", "_").replace("-", "_")
+    (data_dir / f"audio_all_items_{safe_version}.json").write_text(
         json.dumps(source_map, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8"
     )

@@ -126,5 +126,13 @@
     }
   ],
   "logs": [],
-  "passed": true
+  "passed": true,
+  "screenshotsDir": "docs/screenshots/visual_diagnostic/",
+  "screenshots": [
+    "docs/screenshots/visual_diagnostic/01_v15_4_desktop_home.png",
+    "docs/screenshots/visual_diagnostic/02_v15_4_desktop_path_a0.png",
+    "docs/screenshots/visual_diagnostic/03_v15_4_desktop_lesson_a0_01_ss.png",
+    "docs/screenshots/visual_diagnostic/04_v15_4_mobile_menu.png",
+    "docs/screenshots/visual_diagnostic/05_v15_4_mobile_lesson.png"
+  ]
 }
